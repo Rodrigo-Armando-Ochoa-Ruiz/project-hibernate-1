@@ -2,7 +2,7 @@
 <head>
     <title>RPG</title>
     <script src=https://code.jquery.com/jquery-3.6.0.min.js></script>
-    <link href="/css/my.css" rel="stylesheet">
+    <link href="css/my.css" rel="stylesheet">
 </head>
 <body onload="showList(0)">
 <h1>RPG admin panel</h1>
@@ -87,7 +87,7 @@
     <div class="create__group">
         <span>
             <button type="submit" onclick='createAcc()'>
-                <img src="/img/save.png" alt="">
+                <img src="img/save.png" alt="">
             </button>
         </span>
     </div>
@@ -139,7 +139,7 @@
 
 <script>
     function showList(page_number) {
-        let url = "/rest/players?";
+        let url = "/rpg-hibernate-1.0/rest/players?";
 
         let countPerPage = $("#count_1").val();
         if (countPerPage === null) {
@@ -167,10 +167,10 @@
                     + new Date(item.birthday).toLocaleDateString() + "</td><td>"
                     + item.banned + "</td><td>"
                     + "<button id='button_edit_" + item.id + "' onclick='editAcc(" + item.id + ")'>"
-                    + "<img src='/img/edit.png' class='img_edit'>"
+                    + "<img src='img/edit.png' class='img_edit'>"
                     + "</button>" + "</td><td>"
                     + "<button id='button_delete_" + item.id + "' onclick='deleteAcc(" + item.id + ")'>"
-                    + "<img src='/img/delete.png' class='img_delete'>"
+                    + "<img src='img/delete.png' class='img_delete'>"
                     + "</button>" + "</td>")
                     .appendTo('#table_1');
             });
@@ -204,7 +204,7 @@
     function getTotalCount() {
         let value = 1;
         $.ajax({
-            url: "/rest/players/count",
+            url: "/rpg-hibernate-1.0/rest/players/count",
             async: false,
             success: function (result) {
                 value = result;
@@ -214,7 +214,7 @@
     }
 
     function deleteAcc(id) {
-        let url = "/rest/players/" + id;
+        let url = "/rpg-hibernate-1.0/rest/players/" + id;
         $.ajax({
             url: url,
             type: 'DELETE',
@@ -232,7 +232,7 @@
         $(identifier_delete).remove();
 
         // replace "edit" button with "save"
-        let save_image_tag = "<img src='/img/save.png' class='img_save'>";
+        let save_image_tag = "<img src='img/save.png' class='img_save'>";
         $(identifier_edit).html(save_image_tag);
         let property_save_tag = "saveAcc(" + id + ")";
         $(identifier_edit).attr("onclick", property_save_tag);
@@ -273,7 +273,7 @@
         let value_profession = $("#select_profession_" + id).val();
         let value_banned = $("#select_banned_" + id).val();
 
-        let url = "/rest/players/" + id;
+        let url = "/rpg-hibernate-1.0/rest/players/" + id;
         $.ajax({
             url: url,
             type: 'POST',
@@ -300,7 +300,7 @@
         let current_page = window.location.href;
         console.log(current_page);
 
-        let url = "/rest/players";
+        let url = "/rpg-hibernate-1.0/rest/players";
         $.ajax({
             url: url,
             type: 'POST',
